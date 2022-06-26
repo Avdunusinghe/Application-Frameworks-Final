@@ -7,4 +7,4 @@ const databaseConnection = ()=>{
     });
 };
 
-module.exports = databaseConnection
+module.exports = databaseConnection;

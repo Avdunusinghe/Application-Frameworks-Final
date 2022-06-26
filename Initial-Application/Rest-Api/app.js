@@ -22,6 +22,12 @@ app.use(bodyParser());
 app.use(cors());
 
 
+
+
+const userRouter = require("./src/routes/user.routes");
+
+app.use(userRouter.routes()).use(userRouter.allowedMethods());
+
 app.use((ctx)=>{
     ctx.body = "Rest Api";
 });
