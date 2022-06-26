@@ -19,7 +19,7 @@ const app = new Koa();
 
 
 app.use(bodyParser());
-app.use(cors);
+app.use(cors());
 
 
 app.use((ctx)=>{
