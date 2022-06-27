@@ -12,10 +12,8 @@ const UserList = () => {
   }, []);
 
   const getAllusers = useCallback((searchFilter) => {
-    setSearchText(searchFilter);
-
     const userFilterModel = {
-      searchText: searchText,
+      searchText: searchFilter,
     };
 
     userService.getUserDetails(userFilterModel).then((response) => {
@@ -27,15 +25,24 @@ const UserList = () => {
   const handleDelete = (id) => {
     userService.deleteUser(id).then((response) => {
       if (response.data.isSuccess === true) {
-        getAllusers();
+        getAllusers(searchText);
       } else {
       }
     });
   };
 
+  const onChangeSearchText = (searchFilter) => {
+    getAllusers(searchFilter);
+  };
+
   const handleUpdateUser = (id) => {};
   return (
     <div>
+      <label>Search</label>
+      <input
+        type="text"
+        onChange={(e) => onChangeSearchText(e.target.value)}
+      ></input>
       <table>
         <thead>
           <tr>
@@ -46,17 +53,17 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, key) => {
+          {users.map((user, key) => (
             <tr key={key}>
               <td>{user.fullName}</td>
               <td>{user.email}</td>
               <td>{user.mobileNumber}</td>
-              <th>
+              <td>
                 <button>Update</button>
-                <button onClick={() => handleDelete(user._id)}>Delete</button>
-              </th>
-            </tr>;
-          })}
+                <button>Delete</button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
