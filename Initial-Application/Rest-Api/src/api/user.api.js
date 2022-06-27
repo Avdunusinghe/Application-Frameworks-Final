@@ -21,7 +21,7 @@ const saveUser = async (ctx) =>{
                 message :"User Save SuccessFull"
             });
 
-    }catch(eroor){
+    }catch(error){
         return (ctx.body = 
             {
                 isSuccess : false, 
@@ -30,7 +30,40 @@ const saveUser = async (ctx) =>{
     }
 }
 
-module.exports  = {saveUser}
+const deleteUser = async (ctx) =>{
+
+    try{
+
+        const userId = ctx.params.id;
+       
+
+        if(userId === null){
+            return (ctx.body = 
+                {
+                    isSuccess : false, 
+                    message : "Cannot Find User"
+                });
+        }
+
+        const user = await User.findByIdAndDelete(userId)
+
+        return (ctx.body = 
+            {
+                isSuccess : true, 
+                message : "User Delete Successfull"
+            });
+
+    }catch(error){
+        return (ctx.body = 
+            {
+                isSuccess : false, 
+                message :"Error Has Been Occured Please Try Again"
+            });
+    }
+      
+}
+
+module.exports  = {saveUser,deleteUser}
 
 
 
