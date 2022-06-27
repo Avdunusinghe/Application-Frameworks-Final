@@ -3,7 +3,16 @@ import environment from "../../config.dev";
 
 class UserService {
   getUserDetails(userFilterModel) {
-    return axios.post(`${environment.apiUrl}user`, userFilterModel);
+    console.log(userFilterModel);
+    return axios.post(`${environment.apiUrl}user/getAll`, userFilterModel);
+  }
+
+  deleteUser(id) {
+    return axios.delete(`${environment.apiUrl}user` + id);
+  }
+
+  updateUser(userModel) {
+    return axios.put(`${environment.apiUrl}user`, userModel);
   }
 }
 

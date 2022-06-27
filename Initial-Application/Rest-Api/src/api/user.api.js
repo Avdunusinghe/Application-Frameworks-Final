@@ -73,8 +73,6 @@ const getUserDetails = async (ctx) => {
 
 			return (ctx.body = userDetails);
 		} else {
-			//const userDetails = await User.find({ $text: { $search: "java coffee shop" } });
-
 			const userDetails = await User.find({ fullName: searchText });
 
 			return (ctx.body = userDetails);
