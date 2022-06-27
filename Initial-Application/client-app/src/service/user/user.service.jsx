@@ -8,11 +8,11 @@ class UserService {
   }
 
   deleteUser(id) {
-    return axios.delete(`${environment.apiUrl}user` + id);
+    return axios.delete(`${environment.apiUrl}user/` + id);
   }
 
   updateUser(userModel) {
-    return axios.put(`${environment.apiUrl}user`, userModel);
+    return axios.put(`${environment.apiUrl}user/`, userModel);
   }
 }
 

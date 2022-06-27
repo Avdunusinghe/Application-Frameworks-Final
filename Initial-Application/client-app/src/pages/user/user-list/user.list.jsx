@@ -60,7 +60,7 @@ const UserList = () => {
               <td>{user.mobileNumber}</td>
               <td>
                 <button>Update</button>
-                <button>Delete</button>
+                <button onClick={() => handleDelete(user._id)}> Delete</button>
               </td>
             </tr>
           ))}
