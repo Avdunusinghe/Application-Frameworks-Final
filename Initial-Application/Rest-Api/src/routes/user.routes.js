@@ -6,6 +6,7 @@ const router = new Router({
 });
 
 router.post("/",saveUser);
+
 router.delete("/:id",deleteUser);
 
 module.exports = router;

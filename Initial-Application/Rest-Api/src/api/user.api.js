@@ -35,9 +35,10 @@ const deleteUser = async (ctx) =>{
     try{
 
         const userId = ctx.params.id;
-       
+        
+        const query = await User.findById(userId);
 
-        if(userId === null){
+        if(query === null){
             return (ctx.body = 
                 {
                     isSuccess : false, 
@@ -45,19 +46,21 @@ const deleteUser = async (ctx) =>{
                 });
         }
 
-        const user = await User.findByIdAndDelete(userId)
+        query = await User.findByIdAndDelete(userId)
 
         return (ctx.body = 
             {
                 isSuccess : true, 
                 message : "User Delete Successfull"
+
             });
 
     }catch(error){
         return (ctx.body = 
             {
                 isSuccess : false, 
-                message :"Error Has Been Occured Please Try Again"
+                message :"Error has been occured please try again"
+
             });
     }
       
