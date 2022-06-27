@@ -6,9 +6,10 @@ import userService from "../../../service/user/user.service";
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
+
   useEffect(() => {
-    getAllusers();
-  }, [getAllusers]);
+    getAllusers(searchText);
+  }, []);
 
   const getAllusers = useCallback((searchFilter) => {
     setSearchText(searchFilter);
@@ -18,6 +19,7 @@ const UserList = () => {
     };
 
     userService.getUserDetails(userFilterModel).then((response) => {
+      console.log(response.data);
       setUsers(response.data);
     });
   }, []);
