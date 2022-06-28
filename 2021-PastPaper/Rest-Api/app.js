@@ -16,6 +16,9 @@ app.use(bodyParser());
 app.use(json());
 app.use(cors());
 
+const vehicleRouter = require("./src/routes/vehicle.routes");
+app.use(vehicleRouter.routes()).use(vehicleRouter.allowedMethods());
+
 app.listen(4000, () => {
   databaseConnection();
   console.log("API 2019");
