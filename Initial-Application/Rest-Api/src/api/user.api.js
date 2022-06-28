@@ -90,4 +90,10 @@ const getById = async (ctx) => {
 	} catch (error) {}
 };
 
-module.exports = { saveUser, deleteUser, updateUser, getUserDetails, getById };
+module.exports = {
+	saveUser,
+	deleteUser,
+	updateUser,
+	getUserDetails,
+	getById,
+};
