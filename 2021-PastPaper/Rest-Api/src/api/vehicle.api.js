@@ -23,10 +23,12 @@ const saveVehicle = async (ctx) => {
 
 const getAllVehicles = async (ctx) => {
   try {
-    const dataSet = await Vehicle.find().populate("product");
+    const dataSet = await Vehicle.find();
 
     return (ctx.body = dataSet);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = { saveVehicle, getAllVehicles };

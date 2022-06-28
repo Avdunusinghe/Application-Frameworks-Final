@@ -17,7 +17,7 @@ const vehicleSchema = new Schema({
     required: true,
   },
 
-  product: [
+  products: [
     {
       type: Schema.Types.ObjectId,
       required: false,
