@@ -9,4 +9,4 @@ router.post("/", saveVehicle);
 
 router.get("/", getAllVehicles);
 
-module.export = router;
+module.exports = router;
