@@ -12,7 +12,12 @@ const ProductDetails = () => {
     { label: "Mango 🥭", value: "mango" },
     { label: "Strawberry 🍓", value: "strawberry", disabled: true },
   ];
-  const [selected, setSelected] = useState([]);
+  const [type, setTypes] = useState([]);
+  const [code, setCode] = useState([]);
+  const [name, setName] = useState([]);
+  const [amount, setAmount] = useState([]);
+  const [inStock, setInStock] = useState([]);
+
   const [vehicleTypes, setVhicleTypes] = useState(null);
 
   useEffect(() => {
@@ -35,40 +40,56 @@ const ProductDetails = () => {
       }, [])
       .catch((error) => {});
   });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const productModel = {
+      code,
+      name,
+      amount,
+      inStock,
+      type,
+    };
+
+    console.log(productModel);
+  };
   return (
     <div>
       {console.log(vehicleTypes)}
-      <form>
+      <form onSubmit={onSubmit}>
         <label>Code</label>
         <br></br>
-        <input type="text" />
+        <input type="text" onChange={(e) => setCode(e.target.value)} />
         <br></br>
 
         <label>Name</label>
         <br></br>
-        <input type="text" />
+        <input type="text" onChange={(e) => setName(e.target.value)} />
         <br></br>
 
         <label>amount</label>
         <br></br>
-        <input type="text" />
+        <input type="text" onChange={(e) => setAmount(e.target.value)} />
         <br></br>
 
         <label>inStock</label>
         <br></br>
-        <input type="text" />
+        <input type="text" onChange={(e) => setInStock(e.target.value)} />
         <br></br>
 
         <label>inStock</label>
-        <pre>{JSON.stringify(selected)}</pre>
+        <pre>{JSON.stringify(type)}</pre>
         <MultiSelect
-          value={selected}
+          value={type}
           options={vehicleTypes}
-          onChange={(e) => setSelected(e.value)}
+          onChange={(e) => setTypes(e.value)}
           optionLabel="name"
-          placeholder="Select a City"
+          placeholder="Select a Vehicle"
           maxSelectedLabels={10}
         />
+
+        <button type="submit"> Save</button>
       </form>
     </div>
   );
