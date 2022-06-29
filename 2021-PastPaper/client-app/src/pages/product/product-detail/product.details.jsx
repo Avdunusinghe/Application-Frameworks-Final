@@ -1,7 +1,11 @@
 import React, { Component, useCallback, useEffect, useState } from "react";
-import { MultiSelect } from "react-multi-select-component";
 import vehicleService from "../../../services/vehicle/vehicle.service";
 import { MultiSelect } from "primereact/multiselect";
+import "./product.details.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
 const ProductDetails = () => {
   const options = [
     { label: "Grapes 🍇", value: "grapes" },
@@ -22,8 +26,8 @@ const ProductDetails = () => {
         let types = [];
         for (let index = 0; index < response.data.length; index++) {
           types.push({
-            label: response.data[index].type,
-            value: response.data[index]._id,
+            name: response.data[index].type,
+            code: response.data[index]._id,
           });
         }
 
@@ -58,12 +62,12 @@ const ProductDetails = () => {
         <label>inStock</label>
         <pre>{JSON.stringify(selected)}</pre>
         <MultiSelect
-          value={vehicleTypes}
+          value={selected}
           options={vehicleTypes}
           onChange={(e) => setSelected(e.value)}
-          optionLabel="Vehicle"
+          optionLabel="name"
           placeholder="Select a City"
-          maxSelectedLabels={3}
+          maxSelectedLabels={10}
         />
       </form>
     </div>
